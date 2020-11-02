@@ -1,7 +1,7 @@
 <?php
     require_once dirname(__FILE__) . '/vendor/autoload.php';
 
-    $url = $_SERVER['HTTP_HOST']=='localhost' ? "http://localhost/mp-ecommerce-php" : "";//Heroku;
+    $url = $_SERVER['HTTP_HOST']=='localhost' ? "http://localhost/mp-ecommerce-php" : "https://testpaymenteuc.herokuapp.com/";//Heroku;
   
     MercadoPago\SDK::setAccessToken('APP_USR-1159009372558727-072921-8d0b9980c7494985a5abd19fbe921a3d-617633181');
     MercadoPago\SDK::setPublicKey('APP_USR-d81f7be9-ee11-4ff0-bf4e-20c36981d7bf');
