@@ -54,7 +54,7 @@
 
     $preference->auto_return = "approved";
 
-    $preference->notification_url = "$url/notification.php";
+    $preference->notification_url = "$url/notification.php?source_news=webhooks";
 
     $preference->save();
 ?>
