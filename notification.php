@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__FILE__) . '/vendor/autoload.php';
 
-$transport = (new Swift_SmtpTransport('smtp.example.org', 25))
+$transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'SSL'))
   ->setUsername('euc0119@gmail.com')
   ->setPassword('scuuegfektqcrcut')
 ;
