@@ -1,3 +1,63 @@
+<?php
+    require_once dirname(__FILE__) . '/vendor/autoload.php';
+
+    $url = $_SERVER['HTTP_HOST']=='localhost' ? "http://localhost/mp-ecommerce-php" : "";//Heroku;
+  
+    MercadoPago\SDK::setAccessToken('APP_USR-1159009372558727-072921-8d0b9980c7494985a5abd19fbe921a3d-617633181');
+    MercadoPago\SDK::setPublicKey('APP_USR-d81f7be9-ee11-4ff0-bf4e-20c36981d7bf');
+    MercadoPago\SDK::setIntegratorId('dev_24c65fb163bf11ea96500242ac130004');
+    
+    $preference = new MercadoPago\Preference();
+
+    $preference->payment_methods = [
+        'excluded_payment_methods' => [["id" => "amex"]],
+        'excluded_payment_types'=>[['id'=>'atm']],
+        'installments' => 6,
+        'default_installments'=> 6
+    ];
+
+    $payer=[
+        'name'=>'Lalo',
+        'surname'=>'Landa',
+        'email'=>'test_user_81131286@testuser.com',
+        'phone'=>[
+            'area_code'=>'52',
+            'number'=>'5549737300'
+        ],
+        'address'=>[
+            'street_name'=>'Insurgentes Sur',
+            'street_number'=>'1602',
+            'zip_code'=>'03940'
+            ]
+    ];
+
+    $preference->payer=(object)$payer;
+
+    // Crea un ítem en la preferencia
+    $item1 = new MercadoPago\Item();
+    $item1->id = "1234";
+    $item1->picture_url="$url{$_POST['img']}";
+    $item1->title = $_POST['title'];
+    $item1->description = 'Dispositivo móvil de Tienda e-commerce';
+    $item1->quantity = $_POST['unit'];
+    $item1->unit_price = $_POST['price'];
+
+    $preference->items = [$item1];
+
+    $preference->external_reference = "euc0119@gmail.com";
+
+    $preference->back_urls = array(
+        "success" => "$url/success.php",
+        "failure" => "$url/failure.php",
+        "pending" => "$url/pending.php"
+    );
+
+    $preference->auto_return = "approved";
+
+    $preference->notification_url = "$url/notification.php";
+
+    $preference->save();
+?>
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
@@ -19,6 +79,9 @@
     <link rel="stylesheet" href="./assets/merch-tools.css" media="screen, print">
 
     <link rel="stylesheet" href="./assets/fonts" media="">
+
+    <script src="https://www.mercadopago.com/v2/security.js" view="detail"></script>
+
     <style>
         .as-filter-button-text {
             font-size: 26px;
@@ -100,7 +163,7 @@
                                             <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="6|Powerbeats3 Wireless Earphones - Neighborhood Collection - Brick Red|MPXP2">
                                                 <div class="as-tilegallery-element as-image-selected">
                                                     <div class=""></div>
-                                                    <img src="./assets/003.jpg" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" style="content:-webkit-image-set(url(<?php echo $_POST['img'] ?>) 2x);">
+                                                    <img src="./assets/003.jpg" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" style="content:-webkit-image-set(url(.<?php echo $_POST['img'] ?>) 2x);">
                                                 </div>
                                                 
                                             </div>
@@ -124,13 +187,18 @@
                                             </h3>
                                         </div>
                                         <h3 >
-                                            <?php echo $_POST['price'] ?>
+                                            <?php echo "$ {$_POST['price']}"?>
                                         </h3>
                                         <h3 >
-                                            <?php echo "$" . $_POST['unit'] ?>
+                                            <?php echo $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                    <!--<button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>-->
+                                    <script
+                                    src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js"
+                                    data-button-label="Pagar la compra"
+                                    data-preference-id="<?php echo $preference->id; ?>">
+                                    </script>
                                 </div>
                             </div>
                         </div>

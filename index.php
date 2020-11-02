@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+$base = $_SERVER['HTTP_HOST']=='localhost' ? "/mp-ecommerce-php" : "";
+?>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta name="viewport" content="width=1024">
@@ -19,6 +22,9 @@
     <link rel="stylesheet" href="./assets/merch-tools.css" media="screen, print">
 
     <link rel="stylesheet" href="./assets/fonts" media="">
+
+    <script src="https://www.mercadopago.com/v2/security.js" view="index"></script>
+
     <style>
         .as-filter-button-text {
             font-size: 26px;
@@ -257,8 +263,8 @@
                                                 $15.000
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
-                                            <input type="hidden" name="img" value="./assets/samsung-galaxy-s9-xxl.jpg">
+                                        <form action="<?= $base ?>/detail.php" method="get">
+                                            <input type="hidden" name="img" value="/assets/samsung-galaxy-s9-xxl.jpg">
                                             <input type="hidden" name="title" value="Samsung Galaxy S9">
                                             <input type="hidden" name="price" value="15000">
                                             <input type="hidden" name="unit" value="1">
@@ -312,8 +318,8 @@
                                                 $10.000
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
-                                            <input type="hidden" name="img" value="./assets/l6g6.jpg">
+                                        <form action="<?= $base ?>/detail.php" method="get">
+                                            <input type="hidden" name="img" value="/assets/l6g6.jpg">
                                             <input type="hidden" name="title" value="LG G6">
                                             <input type="hidden" name="price" value="10000">
                                             <input type="hidden" name="unit" value="1">
@@ -370,8 +376,8 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
-                                            <input type="hidden" name="img" value="./assets/u_10168742.jpg">
+                                        <form action="<?= $base ?>/detail.php" method="get">
+                                            <input type="hidden" name="img" value="/assets/u_10168742.jpg">
                                             <input type="hidden" name="title" value="iPhone 8">
                                             <input type="hidden" name="price" value="16000">
                                             <input type="hidden" name="unit" value="1">
@@ -427,8 +433,8 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
-                                            <input type="hidden" name="img" value="./assets/motorola-moto-g5-plus-1.jpg">
+                                        <form action="<?= $base ?>/detail.php" method="get">
+                                            <input type="hidden" name="img" value="/assets/motorola-moto-g5-plus-1.jpg">
                                             <input type="hidden" name="title" value="Motorola G5">
                                             <input type="hidden" name="price" value="9000">
                                             <input type="hidden" name="unit" value="1">
@@ -477,8 +483,8 @@
                                                 $8.000
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
-                                            <input type="hidden" name="img" value="./assets/motorola-moto-g4-3.jpg">
+                                        <form action="<?= $base ?>/detail.php" method="get">
+                                            <input type="hidden" name="img" value="/assets/motorola-moto-g4-3.jpg">
                                             <input type="hidden" name="title" value="Moto G4">
                                             <input type="hidden" name="price" value="8000">
                                             <input type="hidden" name="unit" value="1">
@@ -528,8 +534,8 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <form action="/detail.php" method="get">
-                                            <input type="hidden" name="img" value="./assets/003.jpg">
+                                        <form action="<?= $base ?>/detail.php" method="get">
+                                            <input type="hidden" name="img" value="/assets/003.jpg">
                                             <input type="hidden" name="title" value="Sony Xperia XZ2">
                                             <input type="hidden" name="price" value="10000">
                                             <input type="hidden" name="unit" value="1">
