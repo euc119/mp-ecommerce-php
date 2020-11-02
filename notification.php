@@ -6,7 +6,7 @@ $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'SSL'))
   ->setPassword('scuuegfektqcrcut')
 ;
 
-$result = $mailer->send($message);
+
 
 if($json = json_decode(file_get_contents("php://input"), true)) {
     $notify = file_get_contents("php://input");
@@ -17,5 +17,7 @@ if($json = json_decode(file_get_contents("php://input"), true)) {
     ->setFrom(['euc0119@gmail.com' => 'Emmanuel'])
     ->setTo(['euc0119@gmail.com'])
     ->setBody($notify);
+
+    $result = $mailer->send($message);
 } 
 ?>
